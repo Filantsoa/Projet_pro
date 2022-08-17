@@ -1,0 +1,14 @@
+{
+  "name": "monprojetscolair",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "sass": "sass --watch public/sass/style.scss:public/css/style.css"
+  },
+  "author": "",
+  "license": "ISC"
+}
