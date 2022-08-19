@@ -53,8 +53,35 @@ nav{
             }
         }
     }
-    
+    .navbar-nav{
+        margin-top: 35em;
+        li{
+            a{
+                padding:15px 0px 15px 25px !important;
+                color: white;
+                &:hover{
+                    color:#2b2626;
+                }
+                &:focus{
+                    color:white;
+                }
+            }
+            .dropdown-menu{
+                background-color: transparent;
+                border: 0;
+                &:hover{
+                    background-color: transparent;
+                }
+                .dropdown-item{
+                    &:hover{
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
 }
+
 
 .wrapper{
     margin-left:260px;
@@ -87,7 +114,11 @@ header{
     margin-right: auto;
     padding: 1em;
     border: 1px solid;
-    border-radius: 1em
+    border-radius: 1em;
+    .titre_login{
+        text-align: center;
+        padding: 2em;
+    }
 }
 #inscription{
     tr{

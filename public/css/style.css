@@ -53,6 +53,29 @@ nav ul li a:hover::before {
 nav ul li img {
   width: 70%;
 }
+nav .navbar-nav {
+  margin-top: 35em;
+}
+nav .navbar-nav li a {
+  padding: 15px 0px 15px 25px !important;
+  color: white;
+}
+nav .navbar-nav li a:hover {
+  color: #2b2626;
+}
+nav .navbar-nav li a:focus {
+  color: white;
+}
+nav .navbar-nav li .dropdown-menu {
+  background-color: transparent;
+  border: 0;
+}
+nav .navbar-nav li .dropdown-menu:hover {
+  background-color: transparent;
+}
+nav .navbar-nav li .dropdown-menu .dropdown-item:hover {
+  background-color: transparent;
+}
 
 .wrapper {
   margin-left: 260px;
@@ -86,6 +109,10 @@ header {
   padding: 1em;
   border: 1px solid;
   border-radius: 1em;
+}
+#form_inscription .titre_login {
+  text-align: center;
+  padding: 2em;
 }
 
 #inscription tr {

@@ -7,25 +7,24 @@
         <li><a href="#"><i class="fa fa-users"></i>&nbsp;  Users</a></li>
         <li><a href="#"><i class="fa fa-picture-o"></i>&nbsp;  Pictures</a></li>
         <li><a href="#"><i class="fa fa-phone"></i>&nbsp; Contact</a></li> -->
-        {% if app.user %}
-            <li>
-                <a href="">{{ app.user.nom }}</a>
-            </li>
-            <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li class="dropdown">
-                    <a href="" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ app.user.nom }}
-                    </a>
-                </li>
+        
+    </ul>
+    
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+            {% if app.user %}
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{ app.user.nom }}</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_logout') }}">Deconnexion</a>
+                    </li>
+                </ul>
+        </li>
+            {% else %}
                 <li>
-                    <a class="dropdown-item"  href="">Deconnexion</a>
+                    <a href="{{ path('app_login') }}">Connexion</a>
                 </li>
-            </ul> -->
-            
-        {% else %}
-            <li><a href="{{ path('app_login') }}"><i class="fa fa-phone"></i>&nbsp; Login</a></li>
-            <li><a href="{{ path('app_register') }}"><i class="fa fa-phone"></i>&nbsp; Inscription</a></li>
-        {% endif %}
+            {% endif %}
     </ul>
 </nav>
 
