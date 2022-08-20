@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UtlisateurController!{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="section">
+            <div class="titre">
+                <h1>Liste des utilisateurs</h1>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Email</th>
+                        <th>Telephone</th>
+                        <th>Role(s)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in utilisateur %}
+                    <tr>
+                        <td>{{ user.nom|upper }}</td>
+                        <td>{{ user.prenom|title }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>+261{{ user.tel }}</td>
+                        <td>
+                            {% for role in user.roles %}
+                                {% if role == "ROLE_USER" %}
+                                    Utilisateur <br>
+                                {% elseif role == "ROLE_ADMIN" %}
+                                    Administrateur
+                                {% else %}
+                                {% endif %}
+                            {% else %}
+                                Utilisateur
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <a href="{{ path('utilisateur_modif', {'id': user.id }) }}" class="btn btn-warning">Modif</a>
+                            <a href="" class="btn btn-info">Info</a>
+                        </td>
+                    </tr>
+                        
+                    {% else %}
+
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+{% endblock %}

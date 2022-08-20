@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification | utilisateur{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <div class="section">
+        <div class="titre">
+            <h1>MODIFICATION UTILISATEUR</h1>
+        </div>
+            
+        <div class="col-lg-6 col-md-6" id="form_inscription">
+            {{ form_start(utilisateur_modif) }}
+                <table class="table table-borderless" id="inscription">
+                    <tr>
+                        <th>Nom :</th>
+                        <td colspan="4">
+                            {{ form_widget(utilisateur_modif.nom, {
+                                'attr' : {
+                                    'classe' : 'form-control',
+                                    'placeholder' : 'Votre nom '
+                                }
+                            }) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Prenom :</th>
+                        <td colspan="4">
+                            {{ form_widget(utilisateur_modif.prenom, {
+                                'attr' : {
+                                    'classe' : 'form-control',
+                                    'placeholder' : 'Votre prenom '
+                                }
+                            }) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Telephone :</th>
+                        <td colspan="4">
+                            {{ form_widget(utilisateur_modif.tel, {
+                                'attr' : {
+                                    'classe' : 'form-control',
+                                    'placeholder' : 'Votre numero telephone '
+                                }
+                            }) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Email :</th>
+                        <td colspan="4">
+                            {{ form_widget(utilisateur_modif.email, {
+                                'attr' : {
+                                    'classe' : 'form-control',
+                                    'placeholder' : 'Votre email existe '
+                                }
+                            }) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Role(s) :</th>
+                        <td>
+                            {{ form_widget(utilisateur_modif.roles) }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th></th>
+                        <td colspan="4">
+                            <button type="submit" class="btn btn-primary">Modif</button>
+                        </td>
+                    </tr>
+                </table>
+            {{ form_end(utilisateur_modif) }}
+        </div>
+    
+    </div>
+        
+</div>
+{% endblock %}
