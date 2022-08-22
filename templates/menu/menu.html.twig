@@ -3,7 +3,9 @@
     <ul>
         <li class="logo"><img src="{{ asset('image/logo.jpg') }}"></li>
         <li><a href="{{ path('app_home') }}"><i class="fa fa-home"></i>&nbsp;  Home</a></li>
-        <li><a href="#"><i class="fa fa-book"></i>&nbsp;  Admin</a></li>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="#"><i class="fa fa-book"></i>&nbsp;  Admin</a></li>
+        {% endif %}
         <!-- <li><a href="#"><i class="fa fa-users"></i>&nbsp;  Users</a></li>
         <li><a href="#"><i class="fa fa-picture-o"></i>&nbsp;  Pictures</a></li>
         <li><a href="#"><i class="fa fa-phone"></i>&nbsp; Contact</a></li> -->

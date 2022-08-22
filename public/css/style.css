@@ -140,4 +140,18 @@ header {
   width: 100%;
 }
 
+#premier_page {
+  left: auto;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 6em;
+}
+#premier_page img {
+  width: 70%;
+}
+#premier_page .button a {
+  font-size: 13px;
+}
+
 /*# sourceMappingURL=style.css.map */

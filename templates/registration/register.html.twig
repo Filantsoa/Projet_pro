@@ -6,99 +6,111 @@
 <div class="wrapper">
     <div class="section">
         <div class="titre">
-            <h1>INSCRIPTION UTILISATEUR</h1>
+            <!-- <h1>INSCRIPTION UTILISATEUR</h1> -->
         </div>
             
-    <div class="col-lg-6 col-md-6" id="form_inscription">
+    <div class="container" id="form_inscription">
+        <div class="titre_login">
+            <h2>INSCRIPTION UTILISATEUR</h2>
+        </div>
         {{ form_start(registrationForm) }}
-        <table class="table table-borderless" id="inscription">
-            <tr>
-                <th>Nom :</th>
-                <td colspan="4">
-                    {{ form_widget(registrationForm.nom, {
-                        'attr' : {
-                            'classe' : 'form-control',
-                            'placeholder' : 'Votre nom '
-                        }
-                    }) }}
-                </td>
-            </tr>
-            <tr>
-                <th>Prenom :</th>
-                <td colspan="4">
-                    {{ form_widget(registrationForm.prenom, {
-                        'attr' : {
-                            'classe' : 'form-control',
-                            'placeholder' : 'Votre prenom '
-                        }
-                    }) }}
-                </td>
-            </tr>
-            <tr>
-                <th>Telephone :</th>
-                <td colspan="4">
-                    {{ form_widget(registrationForm.tel, {
-                        'attr' : {
-                            'classe' : 'form-control',
-                            'placeholder' : 'Votre numero telephone '
-                        }
-                    }) }}
-                </td>
-            </tr>
-
-            <tr>
-                <th>Email :</th>
-                <td colspan="4">
-                    {{ form_widget(registrationForm.email, {
-                        'attr' : {
-                            'classe' : 'form-control',
-                            'placeholder' : 'Votre email existe '
-                        }
-                    }) }}
-                </td>
-            </tr>
-            <tr>
-                <th>Mot de passe :</th>
-                <td colspan="4">
-                    {{ form_widget(registrationForm.plainPassword.first, {
-                        'attr' : {
-                            'classe' : 'form-control',
-                            'placeholder' : 'Votre mot de passe '
-                        }
-                    }) }}
-                </td>
-            </tr>
-            <tr>
-                <th>Confirme <br> votre mot de passe :</th>
-                <td colspan="4">
-                    {{ form_widget(registrationForm.plainPassword.second, {
-                        'attr' : {
-                            'classe' : 'form-control',
-                            'placeholder' : 'Confirmer votre mot de passe '
-                        }
-                    }) }}
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td colspan="4">
-                    {{ form_widget(registrationForm.agreeTerms) }}
-                    <label for="">Accepter les conditions</label>
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td colspan="4">
-                    <button type="submit" class="btn btn-primary">Inscrire</button>
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td>
-                    <p>Vous avez déjà un compte ? <a href="">Connexion</a></p>
-                </td>
-            </tr>
-        </table>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <table class="table table-borderless" id="inscription">
+                    <tr>
+                        <th>Nom :</th>
+                        <td colspan="4">
+                            {{ form_widget(registrationForm.nom, {
+                                'attr' : {
+                                    'classe' : 'form-control',
+                                    'placeholder' : 'Votre nom '
+                                }
+                            }) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Prenom :</th>
+                        <td colspan="4">
+                            {{ form_widget(registrationForm.prenom, {
+                                'attr' : {
+                                    'classe' : 'form-control',
+                                    'placeholder' : 'Votre prenom '
+                                }
+                            }) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Telephone :</th>
+                        <td colspan="4">
+                            {{ form_widget(registrationForm.tel, {
+                                'attr' : {
+                                    'classe' : 'form-control',
+                                    'placeholder' : 'Votre numero telephone '
+                                }
+                            }) }}
+                        </td>
+                    </tr>
+        
+                    <tr>
+                        <th>Email :</th>
+                        <td colspan="4">
+                            {{ form_widget(registrationForm.email, {
+                                'attr' : {
+                                    'classe' : 'form-control',
+                                    'placeholder' : 'Votre email existe '
+                                }
+                            }) }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <table class="table table-borderless" id="inscription">
+                    <tr>
+                        <th>Mot de passe :</th>
+                        <td colspan="4">
+                            {{ form_widget(registrationForm.plainPassword.first, {
+                                'attr' : {
+                                    'classe' : 'form-control',
+                                    'placeholder' : 'Votre mot de passe '
+                                }
+                            }) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Confirme <br> votre mot de passe :</th>
+                        <td colspan="4">
+                            {{ form_widget(registrationForm.plainPassword.second, {
+                                'attr' : {
+                                    'classe' : 'form-control',
+                                    'placeholder' : 'Confirmer votre mot de passe '
+                                }
+                            }) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td colspan="4">
+                            {{ form_widget(registrationForm.agreeTerms) }}
+                            <label for="">Accepter les conditions</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td colspan="4">
+                            <button type="submit" class="btn btn-primary">Inscrire</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <p>Vous avez déjà un compte ? <a href="">Connexion</a></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
         
 
         

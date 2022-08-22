@@ -150,3 +150,18 @@ header{
     
 
 }
+#premier_page{
+    left: auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 6em;
+    img{
+        width: 70%;
+    }
+    .button{
+        a{
+            font-size: 13px;
+        }
+    }
+}
