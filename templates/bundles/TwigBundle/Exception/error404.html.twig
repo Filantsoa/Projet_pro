@@ -1,10 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'bundles/TwigBundle/Exception/index.html.twig' %}
 
-{% block body %}
-    <h1>Page not found</h1>
+{% block titre %} Page introvable {% endblock %}
 
-    <p>
-        The requested page couldn't be located. Checkout for any URL
-        misspelling or <a href="{{ path('app_home') }}">return to the homepage</a>.
-    </p>
-{% endblock %}
+{% block message %} Page introvable {% endblock %}
+    
+{% block description %}Cette page est introvable. Désolé{% endblock %}

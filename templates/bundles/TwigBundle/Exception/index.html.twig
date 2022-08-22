@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="wrapper">
+    <div class="section">
+        <div class="titre">
+            <h1>{% block message %}{% endblock %}</h1>
+        </div>
+        <div class="text-center">
+            <h1>{% block description %}{% endblock %}</h1>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}
