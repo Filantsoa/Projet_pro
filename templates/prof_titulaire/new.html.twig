@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ProfTitulaire{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="section">
+            <div class="titre">
+                <h1>Nouvelle Prof Titulaire</h1>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        {{ include('prof_titulaire/_form.html.twig') }}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+
+    <a href="{{ path('app_prof_titulaire_index') }}">back to list</a>
+{% endblock %}

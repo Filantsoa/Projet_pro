@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+    <div class="form-group">
+        {{ form_row(form.nom, {
+            'label' : 'Nom prof Titulaire'
+        }) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.prenom, {
+            'label' : 'Prenom prof Titulaire'
+        }) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.adresse, {
+            'label' : 'Adresse prof Titulaire'
+        }) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.telephone, {
+            'label' : 'Telephone prof Titulaire'
+        }) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.sexe) }}
+    </div>
+    
+    <button class="btn btn-primary">{{ button_label|default('Enregistre') }}</button>
+{{ form_end(form) }}

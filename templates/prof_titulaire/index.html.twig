@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prof Titulaire{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <div class="section">
+        <div class="titre">
+            <h1>Prof Titulaire</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Adresse</th>
+                            <th>Telephone</th>
+                            <th>Sexe</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for prof_titulaire in prof_titulaires %}
+                        <tr>
+                            <td>{{ prof_titulaire.nom|upper }}</td>
+                            <td>{{ prof_titulaire.prenom|title }}</td>
+                            <td>{{ prof_titulaire.adresse|title }}</td>
+                            <td>+261{{ prof_titulaire.telephone }}</td>
+                            <td>{{ prof_titulaire.sexe|capitalize }}</td>
+                            <td>
+                                <a class="btn btn-info" href="{{ path('app_prof_titulaire_show', {'id': prof_titulaire.id}) }}"><i class="fa fa-list"></i></a>
+                                <a class="btn btn-warning" href="{{ path('app_prof_titulaire_edit', {'id': prof_titulaire.id}) }}"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {{ knp_pagination_render(prof_titulaires) }}
+                <a class="btn btn-primary" href="{{ path('app_prof_titulaire_new') }}">Nouvelle Titulaire</a>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+    
+
+    
+{% endblock %}

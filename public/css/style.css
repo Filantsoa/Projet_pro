@@ -5,6 +5,15 @@ body {
   background: #e3e9f7;
 }
 
+.btn-primary {
+  width: auto !important;
+  font-size: 13px !important;
+}
+
+.form-label {
+  font-weight: 600;
+}
+
 .logo {
   padding: 20px;
 }
@@ -152,6 +161,99 @@ header {
 }
 #premier_page .button a {
   font-size: 13px;
+}
+
+#accuel_block_prof {
+  background-color: rgba(71, 137, 130, 0.5098039216);
+  height: 9em;
+  padding-top: 2em;
+  border-radius: 2em 4em;
+  margin: 1em;
+}
+#accuel_block_prof:hover {
+  background-color: rgba(112, 219, 209, 0.5098039216);
+  color: rgba(155, 196, 233, 0.8901960784);
+}
+#accuel_block_prof svg {
+  font-size: 3em;
+}
+#accuel_block_prof a {
+  text-decoration: none;
+  color: #f0f8ff;
+}
+#accuel_block_prof a:hover {
+  color: rgba(155, 196, 233, 0.8901960784);
+}
+
+#accuel_block_classe {
+  background-color: rgba(122, 245, 153, 0.5098039216);
+  height: 9em;
+  padding-top: 2em;
+  color: #f0f8ff;
+  border-radius: 2em 4em;
+  margin: 1em;
+}
+#accuel_block_classe:hover {
+  background-color: rgba(168, 214, 170, 0.5098039216);
+  color: #9be9c2;
+}
+#accuel_block_classe svg {
+  font-size: 3em;
+}
+
+#accuel_block_primair {
+  background-color: rgba(122, 155, 245, 0.5098039216);
+  height: 9em;
+  padding-top: 2em;
+  color: #f0f8ff;
+  border-radius: 2em 4em;
+  margin: 1em;
+}
+#accuel_block_primair:hover {
+  background-color: rgba(168, 188, 214, 0.5098039216);
+  color: #9bbae9;
+}
+#accuel_block_primair svg {
+  font-size: 3em;
+}
+
+#accuel_block_premier_cicle {
+  background-color: rgba(245, 188, 122, 0.5098039216);
+  height: 9em;
+  padding-top: 2em;
+  color: #f0f8ff;
+  border-radius: 2em 4em;
+  margin: 1em;
+}
+#accuel_block_premier_cicle:hover {
+  background-color: rgba(214, 196, 168, 0.5098039216);
+  color: #e9c79b;
+}
+#accuel_block_premier_cicle svg {
+  font-size: 3em;
+}
+
+#accuel_block_seconde_cicle {
+  background-color: rgba(245, 122, 132, 0.5098039216);
+  height: 9em;
+  padding-top: 2em;
+  color: #f0f8ff;
+  border-radius: 2em 4em;
+  margin: 1em;
+}
+#accuel_block_seconde_cicle:hover {
+  background-color: rgba(214, 168, 186, 0.5098039216);
+  color: #e99bb9;
+}
+#accuel_block_seconde_cicle svg {
+  font-size: 3em;
+}
+
+table {
+  font-size: 13px;
+}
+table .btn {
+  font-size: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

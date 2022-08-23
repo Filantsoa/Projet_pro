@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accuel!{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="section">
+            <div class="titre">
+                <h1>ACCUEL</h1>
+            </div>
+            <div class="container">
+                <div class="row">
+                    
+                        <div class="col-lg-3 col-md-3" id="accuel_block_prof">
+                            <a href="{{ path('app_prof_titulaire_index') }}">
+                                <div class="text-center">
+                                    <i class="fa fa-user"></i>
+                                    <h3>Prof Titulaire </h3>
+                                </div>  
+                            </a>
+                        </div>
+                    
+                    <div class="col-lg-3 col-md-3" id="accuel_block_classe">
+                        <div class="text-center">
+                            <i class="fa fa-cube"></i>
+                            <h3>Classe </h3>
+                        </div>  
+                    </div>
+                    <div class="col-lg-3 col-md-3" id="accuel_block_primair">
+                        <div class="text-center">
+                            <i class="fa fa-address-book"></i>
+                            <h3>Eleve Primaire </h3>
+                        </div>  
+                    </div>
+                    <div class="col-lg-3 col-md-3" id="accuel_block_premier_cicle">
+                        <div class="text-center">
+                            <i class="fa fa-address-card"></i>
+                            <h3>Eleve Premier Cicle </h3>
+                        </div>  
+                    </div>
+                    <div class="col-lg-3 col-md-3" id="accuel_block_seconde_cicle">
+                        <div class="text-center">
+                            <i class="fa fa-list"></i>
+                            <h3>Eleve Seconde Cicle</h3>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

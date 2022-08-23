@@ -4,7 +4,13 @@ body{
     font-family:'montserrat';
     background:#e3e9f7;
 }
-
+.btn-primary{
+    width: auto !important;
+    font-size: 13px !important;
+}
+.form-label{
+    font-weight: 600;
+}
 .logo{
     padding:20px;
 }
@@ -163,5 +169,92 @@ header{
         a{
             font-size: 13px;
         }
+    }
+}
+#accuel_block_prof{
+    background-color: #47898282;
+    height: 9em;
+    padding-top: 2em;
+    border-radius: 2em 4em;
+    margin: 1em;
+    &:hover{
+       background-color: #70dbd182;
+       color: #9bc4e9e3;
+    }
+    svg{
+        font-size: 3em;
+    }
+    a{
+        text-decoration: none;
+        color: #f0f8ff;
+        &:hover{
+            color: #9bc4e9e3;
+        }
+    }
+}
+#accuel_block_classe{
+    background-color: #7af59982;
+    height: 9em;
+    padding-top: 2em;
+    color: #f0f8ff;
+    border-radius: 2em 4em;
+    margin: 1em;
+    &:hover{
+       background-color: #a8d6aa82;
+       color: #9be9c2;
+    }
+    svg{
+        font-size: 3em;
+    }
+}
+#accuel_block_primair{
+    background-color: #7a9bf582;
+    height: 9em;
+    padding-top: 2em;
+    color: #f0f8ff;
+    border-radius: 2em 4em;
+    margin: 1em;
+    &:hover{
+       background-color: #a8bcd682;
+       color: #9bbae9;
+    }
+    svg{
+        font-size: 3em;
+    }
+}
+#accuel_block_premier_cicle{
+    background-color: #f5bc7a82;
+    height: 9em;
+    padding-top: 2em;
+    color: #f0f8ff;
+    border-radius: 2em 4em;
+    margin: 1em;
+    &:hover{
+       background-color: #d6c4a882;
+       color: #e9c79b;
+    }
+    svg{
+        font-size: 3em;
+    }
+}
+#accuel_block_seconde_cicle{
+    background-color: #f57a8482;
+    height: 9em;
+    padding-top: 2em;
+    color: #f0f8ff;
+    border-radius: 2em 4em;
+    margin: 1em;
+    &:hover{
+       background-color: #d6a8ba82;
+       color: #e99bb9;
+    }
+    svg{
+        font-size: 3em;
+    }
+}
+table{
+    font-size: 13px;
+    .btn{
+        font-size: 10px;
     }
 }
