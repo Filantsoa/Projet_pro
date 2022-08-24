@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class ProfTitulaireType extends AbstractType
 {
@@ -37,6 +38,12 @@ class ProfTitulaireType extends AbstractType
                 'label' => 'Telephone',
                 'attr' => [
                     'placeholder' => 'Numero telephone prof titulaire',
+                ],
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+                'attr' => [
+                    'placeholder' => 'E-mail prof titulaire',
                 ],
             ])
             ->add('sexe', ChoiceType::class, [

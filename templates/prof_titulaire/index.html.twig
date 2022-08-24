@@ -17,8 +17,10 @@
                             <th>Prenom</th>
                             <th>Adresse</th>
                             <th>Telephone</th>
+                            <th>Email</th>
                             <th>Sexe</th>
-                            <th>actions</th>
+                            <th>Classe</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,10 +30,14 @@
                             <td>{{ prof_titulaire.prenom|title }}</td>
                             <td>{{ prof_titulaire.adresse|title }}</td>
                             <td>+261{{ prof_titulaire.telephone }}</td>
+                            <td><a href="">{{ prof_titulaire.email }}</a></td>
                             <td>{{ prof_titulaire.sexe|capitalize }}</td>
+                            <td><a href="">{{ prof_titulaire.classe|capitalize }}</a></td>
                             <td>
+                                <a href="">{{ include('prof_titulaire/_delete_form.html.twig') }} </a>
                                 <a class="btn btn-info" href="{{ path('app_prof_titulaire_show', {'id': prof_titulaire.id}) }}"><i class="fa fa-list"></i></a>
                                 <a class="btn btn-warning" href="{{ path('app_prof_titulaire_edit', {'id': prof_titulaire.id}) }}"><i class="fa fa-edit"></i></a>
+                                
                             </td>
                         </tr>
                     {% else %}

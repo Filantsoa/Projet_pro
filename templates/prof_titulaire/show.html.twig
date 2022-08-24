@@ -3,40 +3,60 @@
 {% block title %}ProfTitulaire{% endblock %}
 
 {% block body %}
-    <h1>ProfTitulaire</h1>
+<div class="wrapper">
+    <div class="section">
+        <div class="titre">
+            <h1>Prof Titulaire {{ prof_titulaire.nom }}</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Nom</th>
+                                <td>{{ prof_titulaire.nom|upper }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prenom</th>
+                                <td>{{ prof_titulaire.prenom|title }}</td>
+                            </tr>
+                            <tr>
+                                <th>Adresse</th>
+                                <td>{{ prof_titulaire.adresse|title }}</td>
+                            </tr>
+                            <tr>
+                                <th>Telephone</th>
+                                <td>+261{{ prof_titulaire.telephone }}</td>
+                            </tr>
+                            <tr>
+                                <th>E-mail</th>
+                                <td><a href="">{{ prof_titulaire.email }}</a></td>
+                            </tr>
+                            <tr>
+                                <th>Sexe</th>
+                                <td>{{ prof_titulaire.sexe|capitalize }}</td>
+                            </tr>
+                            <tr>
+                                <th>Classe</th>
+                                <td><a href="">{{ prof_titulaire.classe|capitalize }}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ prof_titulaire.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ prof_titulaire.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ prof_titulaire.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ prof_titulaire.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ prof_titulaire.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ prof_titulaire.sexe }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- <a href="{{ path('app_prof_titulaire_edit', {'id': prof_titulaire.id}) }}">edit</a> -->
 
-    <a href="{{ path('app_prof_titulaire_index') }}">back to list</a>
+    {#{ include('prof_titulaire/_delete_form.html.twig') }#}
+            </div>
+            <a class="btn btn-primary" href="{{ path('app_prof_titulaire_index') }}"> << back to list</a>
+        </div>
+    </div>
+</div>
+    
 
-    <a href="{{ path('app_prof_titulaire_edit', {'id': prof_titulaire.id}) }}">edit</a>
+    
 
-    {{ include('prof_titulaire/_delete_form.html.twig') }}
+    
 {% endblock %}

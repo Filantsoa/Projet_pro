@@ -1,0 +1,60 @@
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                {{ form_row(form.matricule) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.nom) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.prenom) }}
+            </div>
+            
+            <div class="form-group">
+                {{ form_row(form.dateNaissance) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.adresse) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.telephone) }}
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                {{ form_row(form.pere) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.mere) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.tuteur) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.sexe) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.religion) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(form.classe) }}
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary">{{ button_label|default('Enregistre') }}</button>
+            </div>
+        </div>
+    </div>
+    
+{{ form_end(form) }}

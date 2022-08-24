@@ -1,13 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit ProfTitulaire{% endblock %}
+{% block title %}Modif Prof Titulaire{% endblock %}
 
 {% block body %}
-    <h1>Edit ProfTitulaire</h1>
-
-    {{ include('prof_titulaire/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_prof_titulaire_index') }}">back to list</a>
-
-    {{ include('prof_titulaire/_delete_form.html.twig') }}
+    <div class="wrapper">
+        <div class="section">
+            <div class="titre">
+                <h1>Modif Prof Titulaire</h1>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {{ include('prof_titulaire/_form.html.twig', {'button_label': 'Modifie'}) }}
+                    <a class="btn btn-primary" href="{{ path('app_prof_titulaire_index') }}"> << back to list</a>
+                    {#{ include('prof_titulaire/_delete_form.html.twig') }#}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

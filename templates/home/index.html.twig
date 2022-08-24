@@ -8,22 +8,26 @@
         <div class="titre">
             <h1>BIENVENUE </h1>
         </div>
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4" id="premier_page">
-                    <p>
-                        Bienvenue sur l'application web de l'école
-                    </p>
-                    <img src="{{ asset('image/logo.jpg') }}" alt="logo">
+        {% if app.user %}
+            
+        {% else %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4" id="premier_page">
+                        <p>
+                            Bienvenue sur l'application web de l'école
+                        </p>
+                        <img src="{{ asset('image/logo.jpg') }}" alt="logo">
 
-                    <div class="button">
-                        <a href="{{ path('app_register') }}" class="btn btn-success">Inscrire</a>
-                        <a href="{{ path('app_login') }}" class="btn btn-info">Connexion</a>
+                        <div class="button">
+                            <a href="{{ path('app_register') }}" class="btn btn-success">Inscrire</a>
+                            <a href="{{ path('app_login') }}" class="btn btn-info">Connexion</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
+        
     </div>
 </div>
 {% endblock %}

@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ProfTitulaireRepository;
+use App\Repository\ElevesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ProfTitulaireRepository::class)
+ * @ORM\Entity(repositoryClass=ElevesRepository::class)
  */
-class ProfTitulaire
+class Eleves
 {
     /**
      * @ORM\Id
@@ -16,6 +16,11 @@ class ProfTitulaire
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $matricule;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -28,7 +33,12 @@ class ProfTitulaire
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(type="date")
+     */
+    private $dateNaissance;
+
+    /**
+     * @ORM\Column(type="string", length=100)
      */
     private $adresse;
 
@@ -40,25 +50,48 @@ class ProfTitulaire
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $sexe;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Classe::class, mappedBy="profTitulaire", cascade={"persist", "remove"})
-     */
-    private $classe;
+    private $mere;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $email;
+    private $pere;
 
-    public function __toString()
-    {
-        return $this->getNom();
-    }
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $tuteur;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $sexe;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="eleves")
+     */
+    private $classe;
+
+    /**
+     * @ORM\Column(type="string", length=150)
+     */
+    private $religion;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getMatricule(): ?int
+    {
+        return $this->matricule;
+    }
+
+    public function setMatricule(int $matricule): self
+    {
+        $this->matricule = $matricule;
+
+        return $this;
     }
 
     public function getNom(): ?string
@@ -81,6 +114,18 @@ class ProfTitulaire
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getDateNaissance(): ?\DateTimeInterface
+    {
+        return $this->dateNaissance;
+    }
+
+    public function setDateNaissance(\DateTimeInterface $dateNaissance): self
+    {
+        $this->dateNaissance = $dateNaissance;
 
         return $this;
     }
@@ -109,6 +154,42 @@ class ProfTitulaire
         return $this;
     }
 
+    public function getMere(): ?string
+    {
+        return $this->mere;
+    }
+
+    public function setMere(string $mere): self
+    {
+        $this->mere = $mere;
+
+        return $this;
+    }
+
+    public function getPere(): ?string
+    {
+        return $this->pere;
+    }
+
+    public function setPere(string $pere): self
+    {
+        $this->pere = $pere;
+
+        return $this;
+    }
+
+    public function getTuteur(): ?string
+    {
+        return $this->tuteur;
+    }
+
+    public function setTuteur(string $tuteur): self
+    {
+        $this->tuteur = $tuteur;
+
+        return $this;
+    }
+
     public function getSexe(): ?string
     {
         return $this->sexe;
@@ -128,29 +209,19 @@ class ProfTitulaire
 
     public function setClasse(?Classe $classe): self
     {
-        // unset the owning side of the relation if necessary
-        if ($classe === null && $this->classe !== null) {
-            $this->classe->setProfTitulaire(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($classe !== null && $classe->getProfTitulaire() !== $this) {
-            $classe->setProfTitulaire($this);
-        }
-
         $this->classe = $classe;
 
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getReligion(): ?string
     {
-        return $this->email;
+        return $this->religion;
     }
 
-    public function setEmail(string $email): self
+    public function setReligion(string $religion): self
     {
-        $this->email = $email;
+        $this->religion = $religion;
 
         return $this;
     }

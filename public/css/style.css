@@ -255,5 +255,8 @@ table {
 table .btn {
   font-size: 10px;
 }
+table tbody td a {
+  text-decoration: none;
+}
 
 /*# sourceMappingURL=style.css.map */
