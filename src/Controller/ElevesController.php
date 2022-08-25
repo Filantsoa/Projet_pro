@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/eleves")
@@ -18,10 +19,18 @@ class ElevesController extends AbstractController
     /**
      * @Route("/", name="app_eleves_index", methods={"GET"})
      */
-    public function index(ElevesRepository $elevesRepository): Response
+    public function index(Request $request, ElevesRepository $elevesRepository, PaginatorInterface $paginator): Response
     {
+        $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'ASC']);
+
+        // $queryBuilder = $profTitulaireRepository->getWithSerchQueryBuilder($q);
+        $eleves = $paginator->paginate(
+            $donnes,
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('eleves/index.html.twig', [
-            'eleves' => $elevesRepository->findAll(),
+            'eleves' => $eleves,
         ]);
     }
 

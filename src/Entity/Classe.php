@@ -6,9 +6,13 @@ use App\Repository\ClasseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ClasseRepository::class)
+ * @UniqueEntity(fields={"nomClasse"}, message="Votre Classe existe déjà !")
+ * @UniqueEntity(fields={"profTitulaire"}, message="Votre Prof Titulaire existe déjà !")
  */
 class Classe
 {
@@ -21,11 +25,13 @@ class Classe
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $nomClasse;
 
     /**
      * @ORM\OneToOne(targetEntity=ProfTitulaire::class, inversedBy="classe", cascade={"persist", "remove"})
+     * @Assert\NotBlank()
      */
     private $profTitulaire;
 

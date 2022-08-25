@@ -23,6 +23,7 @@ class ProfTitulaireController extends AbstractController
     {
         $donnes = $this->getDoctrine()->getRepository(ProfTitulaire::class)->findBy([],['nom' => 'desc']);
 
+        // $queryBuilder = $profTitulaireRepository->getWithSerchQueryBuilder($q);
         $profTitulaire = $paginator->paginate(
             $donnes,
             $request->query->getInt('page', 1),

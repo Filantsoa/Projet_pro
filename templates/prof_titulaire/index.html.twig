@@ -32,7 +32,7 @@
                             <td>+261{{ prof_titulaire.telephone }}</td>
                             <td><a href="">{{ prof_titulaire.email }}</a></td>
                             <td>{{ prof_titulaire.sexe|capitalize }}</td>
-                            <td><a href="">{{ prof_titulaire.classe|capitalize }}</a></td>
+                            <td><a href="{#{ path('app_classe_show', {'id': prof_titulaire.classe.id}) }#}">{{ prof_titulaire.classe|capitalize }}</a></td>
                             <td>
                                 <a href="">{{ include('prof_titulaire/_delete_form.html.twig') }} </a>
                                 <a class="btn btn-info" href="{{ path('app_prof_titulaire_show', {'id': prof_titulaire.id}) }}"><i class="fa fa-list"></i></a>
@@ -47,8 +47,12 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                {{ knp_pagination_render(prof_titulaires) }}
-                <a class="btn btn-primary" href="{{ path('app_prof_titulaire_new') }}">Nouvelle Titulaire</a>
+                
+                    {{ knp_pagination_render(prof_titulaires, 'base/pagination.html.twig') }}
+                <div class="nouvelle">
+                    <a class="btn btn-primary" href="{{ path('app_prof_titulaire_new') }}">Nouvelle Titulaire</a>
+                </div>
+                
             </div>
         </div>
     </div>

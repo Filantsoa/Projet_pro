@@ -259,4 +259,16 @@ table tbody td a {
   text-decoration: none;
 }
 
+.pagination {
+  position: inherit;
+  background-color: transparent;
+  margin-bottom: 1em;
+}
+.pagination .page-item {
+  font-size: 13px;
+}
+.pagination .page-item a {
+  font-size: 13px;
+}
+
 /*# sourceMappingURL=style.css.map */

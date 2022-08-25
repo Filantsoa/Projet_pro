@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\ElevesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ElevesRepository::class)
+ * @UniqueEntity(fields={"matricule"}, message="Votre matricule existe déjà !")
  */
 class Eleves
 {
@@ -19,6 +22,7 @@ class Eleves
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
      */
     private $matricule;
 

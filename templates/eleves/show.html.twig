@@ -3,64 +3,79 @@
 {% block title %}Eleves{% endblock %}
 
 {% block body %}
-    <h1>Eleves</h1>
+    <div class="wrapper">
+        <div class="section">
+            <div class="titre">
+                <h1>Information de {{ elefe.nom }}</h1>
+            </div>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>Matricule</th>
+                                    <td>{{ elefe.matricule }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{{ elefe.nom|upper }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prenom</th>
+                                    <td>{{ elefe.prenom|title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Classe</th>
+                                    <td><a href="">{{ elefe.classe|title }}</a></td>
+                                </tr>
+                                <tr>
+                                    <th>Date de Naissance</th>
+                                    <td>{{ elefe.dateNaissance ? elefe.dateNaissance|date('d-M-Y') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Adresse</th>
+                                    <td>{{ elefe.adresse|title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Telephone</th>
+                                    <td>+261{{ elefe.telephone }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Mere</th>
+                                    <td>{{ elefe.mere|title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Pere</th>
+                                    <td>{{ elefe.pere|title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tuteur</th>
+                                    <td>{{ elefe.tuteur|title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Sexe</th>
+                                    <td>{{ elefe.sexe|capitalize }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Religion</th>
+                                    <td>{{ elefe.religion|title }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <a class="btn btn-primary" href="{{ path('app_eleves_index') }}"> << back to list</a>
+                    <a class="btn btn-warning" href="{{ path('app_eleves_edit', {'id': elefe.id}) }}"><i class="fa fa-edit"></i></a>
+            </div>
+        </div>
+    </div>
+    
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ elefe.id }}</td>
-            </tr>
-            <tr>
-                <th>Matricule</th>
-                <td>{{ elefe.matricule }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ elefe.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ elefe.prenom }}</td>
-            </tr>
-            <tr>
-                <th>DateNaissance</th>
-                <td>{{ elefe.dateNaissance ? elefe.dateNaissance|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ elefe.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ elefe.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Mere</th>
-                <td>{{ elefe.mere }}</td>
-            </tr>
-            <tr>
-                <th>Pere</th>
-                <td>{{ elefe.pere }}</td>
-            </tr>
-            <tr>
-                <th>Tuteur</th>
-                <td>{{ elefe.tuteur }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ elefe.sexe }}</td>
-            </tr>
-            <tr>
-                <th>Religion</th>
-                <td>{{ elefe.religion }}</td>
-            </tr>
-        </tbody>
-    </table>
+    
 
-    <a href="{{ path('app_eleves_index') }}">back to list</a>
+    
 
-    <a href="{{ path('app_eleves_edit', {'id': elefe.id}) }}">edit</a>
-
-    {{ include('eleves/_delete_form.html.twig') }}
+    {#{ include('eleves/_delete_form.html.twig') }#}
 {% endblock %}

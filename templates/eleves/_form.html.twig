@@ -6,7 +6,11 @@
             </div>
 
             <div class="form-group">
-                {{ form_row(form.nom) }}
+                {{ form_row(form.nom, {
+                    'attr' : {
+                        'onkeyup' : 'this.value=this.value.toUpperCase()',
+                    }
+                }) }}
             </div>
 
             <div class="form-group">

@@ -293,3 +293,14 @@ table{
         }
     }
 }
+.pagination{
+    position: inherit;
+    background-color: transparent;
+    margin-bottom: 1em;
+    .page-item{
+        font-size: 13px;
+        a{
+            font-size: 13px;
+        }
+    }
+}

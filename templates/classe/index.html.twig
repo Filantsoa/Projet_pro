@@ -24,7 +24,7 @@
                             <tr>
                                 <td><a href="">{{ classe.nomClasse|capitalize }}</a></td>
                                 <td><a href="{{ path('app_prof_titulaire_show', {'id': classe.profTitulaire.id}) }}">{{ classe.profTitulaire.nom|upper }} {{ classe.profTitulaire.prenom|title }}</a></td>
-                                <td></td>
+                                <td>{{ classe.eleves|length }}</td>
                                 <td>
                                     <a class="btn btn-info" href="{{ path('app_classe_show', {'id': classe.id}) }}"><i class="fa fa-list"></i></a>
                                     <a class="btn btn-warning" href="{{ path('app_classe_edit', {'id': classe.id}) }}"><i class="fa fa-edit"></i></a>
@@ -38,6 +38,8 @@
                         {% endfor %}
                         </tbody>
                     </table>
+
+                    {{ knp_pagination_render(classes, 'base/pagination.html.twig') }}
                     <a class="btn btn-primary" href="{{ path('app_classe_new') }}">Nouvelle classe</a>
                 </div>
             </div>

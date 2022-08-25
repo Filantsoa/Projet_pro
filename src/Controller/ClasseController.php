@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/classe")
@@ -18,10 +19,19 @@ class ClasseController extends AbstractController
     /**
      * @Route("/", name="app_classe_index", methods={"GET"})
      */
-    public function index(ClasseRepository $classeRepository): Response
+    public function index(Request $request, ClasseRepository $classeRepository, PaginatorInterface $paginator): Response
     {
+
+        $donnes = $this->getDoctrine()->getRepository(Classe::class)->findBy([],['nomClasse' => 'desc']);
+
+        // $queryBuilder = $profTitulaireRepository->getWithSerchQueryBuilder($q);
+        $classe = $paginator->paginate(
+            $donnes,
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('classe/index.html.twig', [
-            'classes' => $classeRepository->findAll(),
+            'classes' => $classe,
         ]);
     }
 
