@@ -12,6 +12,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
+                        <div class="titre">
+                            <h3>Information personnelle</h3>
+                        </div>
                         <table class="table">
                             <tbody>
                                 <tr>
@@ -65,9 +68,39 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="titre">
+                            <h3>Information Displine</h3>
+                        </div>
+
+                        <table class="table">
+                            <thead>
+                                <th>Fait</th>
+                                <th>Observation</th>
+                                <th>Point(s)</th>
+                                <th>Date</th>
+                            </thead>
+                            <tbody>
+                                {% for faute in elefe.displines %}
+                                    <tr>
+                                        <td>{{ faute.fait }}</td>
+                                        <td>{{ faute.description }}</td>
+                                        <td>{{ faute.point }}</td>
+                                        <td>{{ faute.date ? faute.date|date('d-M-Y') : ''  }}</td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="4">Aucun faute(s)</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {#{ knp_pagination_render(displines, 'base/pagination.html.twig') }#}
+                    </div>
                 </div>
                 <a class="btn btn-primary" href="{{ path('app_eleves_index') }}"> << back to list</a>
-                    <a class="btn btn-warning" href="{{ path('app_eleves_edit', {'id': elefe.id}) }}"><i class="fa fa-edit"></i></a>
+                <a class="btn btn-warning" href="{{ path('app_eleves_edit', {'id': elefe.id}) }}"><i class="fa fa-edit"></i></a>
             </div>
         </div>
     </div>

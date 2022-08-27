@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\Eleves;
 use App\Form\ElevesType;
 use App\Repository\ElevesRepository;
+use App\Entity\Displines;
+use App\Form\DisplinesType;
+use App\Repository\DisplinesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +22,11 @@ class ElevesController extends AbstractController
     /**
      * @Route("/", name="app_eleves_index", methods={"GET"})
      */
-    public function index(Request $request, ElevesRepository $elevesRepository, PaginatorInterface $paginator): Response
+    public function index(
+        Request $request, 
+        ElevesRepository $elevesRepository, 
+        PaginatorInterface $paginator
+    ): Response
     {
         $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'ASC']);
 
@@ -37,7 +44,7 @@ class ElevesController extends AbstractController
     /**
      * @Route("/new", name="app_eleves_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, ElevesRepository $elevesRepository): Response
+    public function new(Request $request, ElevesRepository $elevesRepository, PaginatorInterface $paginator): Response
     {
         $elefe = new Eleves();
         $form = $this->createForm(ElevesType::class, $elefe);
@@ -46,10 +53,22 @@ class ElevesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $elevesRepository->add($elefe, true);
 
-            return $this->redirectToRoute('app_eleves_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Eleve créé ! Savoir c\'est pouvoir !');
+            return $this->redirectToRoute('app_eleves_new', [], Response::HTTP_SEE_OTHER);
         }
 
+        // afichage
+        $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['id' => 'DESC']);
+
+        // $queryBuilder = $profTitulaireRepository->getWithSerchQueryBuilder($q);
+        $eleves = $paginator->paginate(
+            $donnes,
+            $request->query->getInt('page', 1),
+            5
+        );
+
         return $this->renderForm('eleves/new.html.twig', [
+            'eleves' => $eleves,
             'elefe' => $elefe,
             'form' => $form,
         ]);
@@ -58,8 +77,21 @@ class ElevesController extends AbstractController
     /**
      * @Route("/{id}", name="app_eleves_show", methods={"GET"})
      */
-    public function show(Eleves $elefe): Response
+    public function show(
+        Eleves $elefe,
+        DisplinesRepository $displine,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response
     {
+        $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'ASC']);
+
+        // $queryBuilder = $profTitulaireRepository->getWithSerchQueryBuilder($q);
+        $eleves = $paginator->paginate(
+            $donnes,
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('eleves/show.html.twig', [
             'elefe' => $elefe,
         ]);

@@ -10,5 +10,8 @@
     "sass": "sass --watch public/sass/style.scss:public/css/style.css"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
 }

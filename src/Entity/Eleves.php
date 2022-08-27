@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ElevesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -62,7 +64,7 @@ class Eleves
     private $pere;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $tuteur;
 
@@ -80,6 +82,21 @@ class Eleves
      * @ORM\Column(type="string", length=150)
      */
     private $religion;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Displines::class, mappedBy="eleves")
+     */
+    private $displines;
+
+    public function __construct()
+    {
+        $this->displines = new ArrayCollection();
+    }
+    public function __toString()
+    {
+        
+        return  $this->getNom();
+    }
 
     public function getId(): ?int
     {
@@ -226,6 +243,36 @@ class Eleves
     public function setReligion(string $religion): self
     {
         $this->religion = $religion;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Displines>
+     */
+    public function getDisplines(): Collection
+    {
+        return $this->displines;
+    }
+
+    public function addDispline(Displines $displine): self
+    {
+        if (!$this->displines->contains($displine)) {
+            $this->displines[] = $displine;
+            $displine->setEleves($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDispline(Displines $displine): self
+    {
+        if ($this->displines->removeElement($displine)) {
+            // set the owning side to null (unless already changed)
+            if ($displine->getEleves() === $this) {
+                $displine->setEleves(null);
+            }
+        }
 
         return $this;
     }

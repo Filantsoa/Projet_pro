@@ -20,47 +20,61 @@ class ElevesType extends AbstractType
     {
         $builder
             ->add('matricule', NumberType::class, [
+                'label' => 'Matricule *',
                 'attr' => [
                     'placeholder' => 'Matricule d\'eleve'
-                ]
+                ],
+                // 'help' => '*'
             ])
             ->add('nom', TextType::class, [
+                'label' => 'Nom *',
                 'attr' => [
                     'placeholder' => 'Nom d\'eleve'
                 ] 
             ])
             ->add('prenom', TextType::class, [
+                'label' => 'Prenom *',
                 'attr' => [
                     'placeholder' => 'Prenom d\'eleve'
                 ]
             ])
-            ->add('dateNaissance', BirthdayType::class)
+            ->add('dateNaissance', BirthdayType::class, [
+                'label' => 'Date de niassance *',
+                'format' => 'dMMyyyy',
+            ])
             ->add('adresse', TextType::class, [
+                'label' => 'Adresse *',
                 'attr' => [
                     'placeholder' => 'Adresse exacte d\'eleve'
                 ]
             ])
             ->add('telephone', TelType::class, [
+                'label' => 'Telephone *',
                 'attr' => [
                     'placeholder' => 'Numero telephone d\'eleve'
                 ]
             ])
             ->add('mere', TextType::class, [
+                'label' => 'Mere *',
                 'attr' => [
                     'placeholder' => 'Mere d\'eleve'
                 ]
             ])
             ->add('pere', TextType::class, [
+                'label' => 'Pere *',
                 'attr' => [
                     'placeholder' => 'Pere d\'eleve'
                 ]
             ])
             ->add('tuteur', TextType::class, [
+                'label' => 'Tuteur *',
                 'attr' => [
                     'placeholder' => 'Tuteur d\'eleve'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('sexe', ChoiceType::class, [
+                'label' => 'Sexe *',
                 'choices' => [
                     'Homme' => 'Homme',
                     'Femme' => 'Femme',
@@ -69,6 +83,7 @@ class ElevesType extends AbstractType
                 'multiple' => false,
             ])
             ->add('religion', ChoiceType::class, [
+                'label' => 'Religion *',
                 'choices' => [
                     'Fiangonan\'i Jesosy Kristy eto Madagasikara' => 'FJKM',
                     'Fiangonana Loterana Malagasy' => 'FLM',
@@ -78,6 +93,7 @@ class ElevesType extends AbstractType
                 'multiple' => false,
             ])
             ->add('classe', EntityType::class, [
+                'label' => 'Classe *',
                 'class' => Classe::class,
                 'choice_label' => 'nomClasse',
             ])

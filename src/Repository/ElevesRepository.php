@@ -39,6 +39,15 @@ class ElevesRepository extends ServiceEntityRepository
         }
     }
 
+    public function search($matricule)
+    {
+        return $this->createQueryBuilder('Eleves')
+            ->andWhere('Eleves.matricule LIKE :matricule')
+            ->setParameter('matricule', '%'.$matricule.'%')
+            ->getQuery()
+            ->execute();
+    }
+
 //    /**
 //     * @return Eleves[] Returns an array of Eleves objects
 //     */

@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ProfTitulaire{% endblock %}
+{% block title %}Prof Titulaire{% endblock %}
 
 {% block body %}
 <div class="wrapper">
     <div class="section">
         <div class="titre">
-            <h1>Prof Titulaire {{ prof_titulaire.nom }}</h1>
+            <h1>Prof Titulaire {{ prof_titulaire.nom|upper }}</h1>
         </div>
         <div class="container">
             <div class="row">

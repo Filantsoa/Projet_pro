@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Displines{% endblock %}
+
+{% block body %}
+    <h1>Displines</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ displine.id }}</td>
+            </tr>
+            <tr>
+                <th>Fait</th>
+                <td>{{ displine.fait }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ displine.date ? displine.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ displine.description }}</td>
+            </tr>
+            <tr>
+                <th>Point</th>
+                <td>{{ displine.point }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_displines_index') }}">back to list</a>
+
+    <a href="{{ path('app_displines_edit', {'id': displine.id}) }}">edit</a>
+
+    {{ include('displines/_delete_form.html.twig') }}
+{% endblock %}

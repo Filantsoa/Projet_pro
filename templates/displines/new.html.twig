@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Displines{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="section">
+            <div class="titre">
+                <h1>Create new Displines</h1>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {{ include('displines/_form.html.twig') }}
+
+                    <a href="{{ path('app_displines_index') }}">back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    {
+{% endblock %}

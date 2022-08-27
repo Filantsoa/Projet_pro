@@ -1,6 +1,6 @@
 {{ form_start(form) }}
     <div class="row">
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-4 col-md-4">
             <div class="form-group">
                 {{ form_row(form.matricule) }}
             </div>
@@ -16,11 +16,13 @@
             <div class="form-group">
                 {{ form_row(form.prenom) }}
             </div>
-            
+
             <div class="form-group">
                 {{ form_row(form.dateNaissance) }}
             </div>
+        </div>
 
+        <div class="col-lg-4 col-md-4">
             <div class="form-group">
                 {{ form_row(form.adresse) }}
             </div>
@@ -28,9 +30,7 @@
             <div class="form-group">
                 {{ form_row(form.telephone) }}
             </div>
-        </div>
 
-        <div class="col-lg-6 col-md-6">
             <div class="form-group">
                 {{ form_row(form.pere) }}
             </div>
@@ -38,7 +38,9 @@
             <div class="form-group">
                 {{ form_row(form.mere) }}
             </div>
+        </div>
 
+        <div class="col-lg-4 col-md-4">
             <div class="form-group">
                 {{ form_row(form.tuteur) }}
             </div>
@@ -57,6 +59,7 @@
 
             <div class="form-group">
                 <button class="btn btn-primary">{{ button_label|default('Enregistre') }}</button>
+                <button type="reset" class="btn btn-warning">{{ button_label|default('Annulle') }}</button>
             </div>
         </div>
     </div>

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Displines index{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <div class="section">
+        <div class="titre">
+            <h1>Displines index</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Fait</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Point</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for displine in displines %}
+                        <tr>
+                            <td>{{ displine.id }}</td>
+                            <td>{{ displine.fait }}</td>
+                            <td>{{ displine.date ? displine.date|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ displine.description }}</td>
+                            <td>{{ displine.point }}</td>
+                            <td>
+                                <a href="{{ path('app_displines_show', {'id': displine.id}) }}">show</a>
+                                <a href="{{ path('app_displines_edit', {'id': displine.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            
+                <a href="{{ path('app_displines_new') }}">Create new</a>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+    
+{% endblock %}

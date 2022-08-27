@@ -5,13 +5,30 @@ body {
   background: #e3e9f7;
 }
 
-.btn-primary {
+.btn-primary, .btn-warning {
   width: auto !important;
   font-size: 13px !important;
 }
 
-.form-label {
+.form-label, .form-check-label, .col-form-label {
   font-weight: 600;
+  font-size: 13px !important;
+}
+
+.form-control, .form-select {
+  font-size: 13px !important;
+}
+
+.form-check {
+  float: left;
+  margin-left: 13px;
+}
+
+.form-text {
+  color: red !important;
+  font-style: italic;
+  font-size: 10px !important;
+  margin-left: 2em;
 }
 
 .logo {

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SearchController!{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="section">
+            <div class="titre">
+                <h1>RECHERCHE</h1>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {{form(searchForm)}}
+                </div>
+
+                {#% for eleve in eleves %}
+                    {{ eleve.matricule }}
+                    {{ eleve.nom }}
+            
+                {% endfor %#}
+            </div>
+        </div>
+    </div>
+{% endblock %}
