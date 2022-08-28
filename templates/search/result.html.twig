@@ -13,11 +13,15 @@
                     {{form(form)}}
                 </div>
 
+                {% if eleves|length == 0 %}
+                    <h1>Aucun result</h1>
+                {% else %}
                 {% for eleve in eleves %}
                     {{ eleve.matricule }}
                     {{ eleve.nom }}
                
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>

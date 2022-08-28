@@ -12,69 +12,79 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <div class="titre">
+                        <!-- <div class="titre">
                             <h3>Information personnelle</h3>
-                        </div>
-                        <table class="table">
+                        </div> -->
+                        <table class="table table-borderless">
                             <tbody>
                                 <tr>
                                     <th>Matricule</th>
-                                    <td>{{ elefe.matricule }}</td>
+                                    <td>: {{ elefe.matricule }}</td>
                                 </tr>
                                 <tr>
                                     <th>Nom</th>
-                                    <td>{{ elefe.nom|upper }}</td>
+                                    <td>: {{ elefe.nom|upper }}</td>
                                 </tr>
                                 <tr>
                                     <th>Prenom</th>
-                                    <td>{{ elefe.prenom|title }}</td>
+                                    <td>: {{ elefe.prenom|title }}</td>
                                 </tr>
                                 <tr>
                                     <th>Classe</th>
-                                    <td><a href="">{{ elefe.classe|title }}</a></td>
+                                    <td><a href="">: {{ elefe.classe|title }}</a></td>
                                 </tr>
                                 <tr>
                                     <th>Date de Naissance</th>
-                                    <td>{{ elefe.dateNaissance ? elefe.dateNaissance|date('d-M-Y') : '' }}</td>
+                                    <td>: {{ elefe.dateNaissance ? elefe.dateNaissance|date('d M Y') : '' }}</td>
                                 </tr>
-                                <tr>
-                                    <th>Adresse</th>
-                                    <td>{{ elefe.adresse|title }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Telephone</th>
-                                    <td>+261{{ elefe.telephone }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Mere</th>
-                                    <td>{{ elefe.mere|title }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Pere</th>
-                                    <td>{{ elefe.pere|title }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Tuteur</th>
-                                    <td>{{ elefe.tuteur|title }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Sexe</th>
-                                    <td>{{ elefe.sexe|capitalize }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Religion</th>
-                                    <td>{{ elefe.religion|title }}</td>
-                                </tr>
+                                    <tr class="collapse" id="infoSuite">
+                                        <th>Adresse</th>
+                                        <td>: {{ elefe.adresse|title }}</td>
+                                    </tr>
+                                    <tr class="collapse" id="infoSuite">
+                                        <th>Telephone</th>
+                                        <td>: +261{{ elefe.telephone }}</td>
+                                    </tr>
+                                    <tr class="collapse" id="infoSuite">
+                                        <th>Mere</th>
+                                        <td>: {{ elefe.mere|title }}</td>
+                                    </tr>
+                                    <tr class="collapse" id="infoSuite">
+                                        <th>Pere</th>
+                                        <td>: {{ elefe.pere|title }}</td>
+                                    </tr>
+                                    <tr class="collapse" id="infoSuite">
+                                        <th>Tuteur</th>
+                                        <td>: {{ elefe.tuteur|title }}</td>
+                                    </tr>
+                                    <tr class="collapse" id="infoSuite">
+                                        <th>Sexe</th>
+                                        <td>: {{ elefe.sexe|capitalize }}</td>
+                                    </tr>
+                                    <tr class="collapse" id="infoSuite">
+                                        <th>Religion</th>
+                                        <td>: {{ elefe.religion|title }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>
+                                            <a data-bs-toggle="collapse" href="#infoSuite" aria-expanded="false" aria-controls="collapseExample">
+                                            Lire le suite
+                                        </a>
+                                    </td>
+                                    </tr>
+                                </div>
+                                
                             </tbody>
                         </table>
                     </div>
 
                     <div class="col-lg-6 col-md-6">
-                        <div class="titre">
+                        <!-- <div class="titre">
                             <h3>Information Displine</h3>
-                        </div>
+                        </div> -->
 
-                        <table class="table">
+                        <table class="table table-striped table-hover">
                             <thead>
                                 <th>Fait</th>
                                 <th>Observation</th>
@@ -84,10 +94,10 @@
                             <tbody>
                                 {% for faute in elefe.displines %}
                                     <tr>
-                                        <td>{{ faute.fait }}</td>
-                                        <td>{{ faute.description }}</td>
+                                        <td>{{ faute.fait|title }}</td>
+                                        <td>{{ faute.description|capitalize }}</td>
                                         <td>{{ faute.point }}</td>
-                                        <td>{{ faute.date ? faute.date|date('d-M-Y') : ''  }}</td>
+                                        <td>{{ faute.date ? faute.date|date('d/m/Y') : ''  }}</td>
                                     </tr>
                                 {% else %}
                                     <tr>
@@ -97,6 +107,28 @@
                             </tbody>
                         </table>
                         {#{ knp_pagination_render(displines, 'base/pagination.html.twig') }#}
+                        <div class="text-right">
+                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" href="">Ajoute</a>
+                        </div>
+
+                        <div class="modal fade" tabindex="-1" aria-hidden="true" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5>Nouvelle Faute</h5>
+                                        <a class="btn-close" data-bs-dismiss="modal" aria-label="Close" href=""></a>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        {#{ form(displineForm) }#}
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <a class="btn btn-primary" href="{{ path('app_eleves_index') }}"> << back to list</a>
