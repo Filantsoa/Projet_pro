@@ -7,6 +7,7 @@ use App\Form\ElevesType;
 use App\Repository\ElevesRepository;
 use App\Entity\Displines;
 use App\Form\DisplinesType;
+use App\Form\SearchType;
 use App\Repository\DisplinesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,7 @@ use Knp\Component\Pager\PaginatorInterface;
 class ElevesController extends AbstractController
 {
     /**
-     * @Route("/", name="app_eleves_index", methods={"GET"})
+     * @Route("/", name="app_eleves_index", methods={"GET", "POST"})
      */
     public function index(
         Request $request, 
@@ -28,7 +29,22 @@ class ElevesController extends AbstractController
         PaginatorInterface $paginator
     ): Response
     {
-        $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'ASC']);
+
+        $searchForm = $this->createForm(SearchType::class);
+        $searchForm->handleRequest($request);
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $matricule = $searchForm->getData()->getMatricule();
+            $donnes = $repo->search($matricule);
+
+            return $this->redirectToRoute('app_eleves_index');
+
+            $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'DESC']);
+        }else{
+            $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'ASC']);
+        }
+
+        
 
         // $queryBuilder = $profTitulaireRepository->getWithSerchQueryBuilder($q);
         $eleves = $paginator->paginate(
@@ -38,6 +54,7 @@ class ElevesController extends AbstractController
         );
         return $this->render('eleves/index.html.twig', [
             'eleves' => $eleves,
+            'searchForm' => $searchForm->createView(),
         ]);
     }
 
@@ -84,6 +101,25 @@ class ElevesController extends AbstractController
         Request $request
     ): Response
     {
+
+        // $displines = new Displines();
+        // $formDispline = $this->createForm(DisplinesType::class, $displine);
+        // $formDispline->handleRequest($request);
+
+        // if ($formDispline->isSubmitted() && $formDispline->isValid()) {
+        //         $displines->setDate(New \DateTime('now'));
+        //         // $displine->setEleves($elefe);
+
+        //         $displine->add($displines, true);
+           
+            
+            // $doctrine = $this->getDoctrine()->getManager();
+            // $doctrine->persist($displine);
+            // $doctrine->flush();
+
+            // $this->addFlash('success', 'faute créé ! Savoir c\'est pouvoir !');
+            // return $this->redirectToRoute('app_eleves_new', [], Response::HTTP_SEE_OTHER);
+        // }
         $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'ASC']);
 
         // $queryBuilder = $profTitulaireRepository->getWithSerchQueryBuilder($q);
@@ -94,6 +130,7 @@ class ElevesController extends AbstractController
         );
         return $this->render('eleves/show.html.twig', [
             'elefe' => $elefe,
+            // 'displineForm' => $formDispline->createView(),
         ]);
     }
 

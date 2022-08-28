@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class DisplinesType extends AbstractType
 {
@@ -14,10 +15,10 @@ class DisplinesType extends AbstractType
     {
         $builder
             ->add('fait')
-            ->add('date')
             ->add('description')
             ->add('point')
             ->add('eleves')
+            ->add('valide', SubmitType::class)
         ;
     }
 
