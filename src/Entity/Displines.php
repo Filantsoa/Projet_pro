@@ -100,7 +100,7 @@ class Displines
         return $this->eleves;
     }
 
-    public function setEleves(?Eleves $eleves): self
+    public function setEleves($eleves): self
     {
         $this->eleves = $eleves;
 

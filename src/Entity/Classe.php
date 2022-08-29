@@ -11,7 +11,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ClasseRepository::class)
- * @UniqueEntity(fields={"nomClasse"}, message="Votre Classe existe déjà !")
  * @UniqueEntity(fields={"profTitulaire"}, message="Votre Prof Titulaire existe déjà !")
  */
 class Classe
@@ -40,6 +39,11 @@ class Classe
      */
     private $eleves;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $indice;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
@@ -47,8 +51,14 @@ class Classe
 
     public function __toString()
     {
-        return $this->getNomClasse();
+        return $this->getNomClasse()." ".$this->getIndice();
     }
+
+    // public function getNomIndice()
+    // {
+    //     return $this->getNomClasse()."".$this->getIndice();
+    // }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +114,18 @@ class Classe
                 $elefe->setClasse(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIndice(): ?string
+    {
+        return $this->indice;
+    }
+
+    public function setIndice(string $indice): self
+    {
+        $this->indice = $indice;
 
         return $this;
     }

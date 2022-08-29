@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Reposotory\ProfTitulaireRepository;
 use Doctrine\ORM\EntityRepository;
@@ -24,6 +25,17 @@ class ClasseType extends AbstractType
                 ]
 
             ])
+            ->add('indice', ChoiceType::class, [
+                'label' => 'Indice',
+                'choices' => [
+                    'I' => 'I',
+                    'II' => 'II',
+                    'III' => 'III',
+                    'IV' => 'IV',
+                    'V' => 'V'
+                ]
+        
+            ])
             ->add('profTitulaire', EntityType::class, [
                 'label' => 'Prof Titulaire',
                 'class' => ProfTitulaire::class,
@@ -32,7 +44,7 @@ class ClasseType extends AbstractType
                     return $titulaire->createQueryBuilder('u')
                         ->orderBy('u.prenom', 'DESC');
                 },
-                'choice_label' => ucwords('prenom'),
+                // 'choice_label' => ucwords('prenom'),
             ])
         ;
     }

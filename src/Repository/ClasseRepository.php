@@ -39,6 +39,19 @@ class ClasseRepository extends ServiceEntityRepository
         }
     }
 
+    public function getLabelClasse()
+    {   
+            $sql = "select GROUP_CONCAT(CONCAT(cl.nom_classe, ' ', cl.indice)) as classe from classe as cl";
+
+            $conn = $this->_em->getConnection();
+            $query = $conn->prepare($sql);
+
+            $query->execute();
+            dd($query);
+            $classes = $query->fetchAll();
+            return $classes;
+
+    }
 //    /**
 //     * @return Classe[] Returns an array of Classe objects
 //     */

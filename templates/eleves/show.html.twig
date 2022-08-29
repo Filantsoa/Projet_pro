@@ -106,6 +106,7 @@
                                 {% endfor %}
                             </tbody>
                         </table>
+                        {#{ form(displineForm) }#}
                         {#{ knp_pagination_render(displines, 'base/pagination.html.twig') }#}
                         <div class="text-right">
                             <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" href="">Ajoute</a>
@@ -120,11 +121,11 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        {#{ form(displineForm) }#}
+                                        {#{ form(displineForm) }#}s
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>

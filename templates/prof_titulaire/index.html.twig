@@ -6,7 +6,7 @@
 <div class="wrapper">
     <div class="section">
         <div class="titre">
-            <h1>Prof Titulaire</h1>
+            <h1><u>Prof Titulaire</u></h1>
         </div>
         <div class="container">
             <div class="row">
@@ -20,7 +20,7 @@
                             <th>Email</th>
                             <th>Sexe</th>
                             <th>Classe</th>
-                            <th>Actions</th>
+                            <th id="actionProf">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,7 +32,12 @@
                             <td>+261{{ prof_titulaire.telephone }}</td>
                             <td><a href="">{{ prof_titulaire.email }}</a></td>
                             <td>{{ prof_titulaire.sexe|capitalize }}</td>
-                            <td><a href="{#{ path('app_classe_show', {'id': prof_titulaire.classe.id}) }#}">{{ prof_titulaire.classe|capitalize }}</a></td>
+                            <td>
+                                {% if prof_titulaire.classe|length == 0 %}
+                                    <font color="red">Aucun classe ajoute</font>
+                                {% else %}
+                                    <a href="{#{ path('app_classe_show', {'id': prof_titulaire.classe.id}) }#}">{{ prof_titulaire.classe.nomClasse|capitalize }} {{ prof_titulaire.classe.indice|upper }}</a></td>
+                                {% endif %}
                             <td>
                                 <a href="">{{ include('prof_titulaire/_delete_form.html.twig') }} </a>
                                 <a class="btn btn-info" href="{{ path('app_prof_titulaire_show', {'id': prof_titulaire.id}) }}"><i class="fa fa-list"></i></a>

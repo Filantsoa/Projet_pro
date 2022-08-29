@@ -47,6 +47,7 @@ class ClasseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $classeRepository->add($classe, true);
 
+            $this->addFlash('success', 'Classe créé ! Savoir c\'est pouvoir !');
             return $this->redirectToRoute('app_classe_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -77,6 +78,7 @@ class ClasseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $classeRepository->add($classe, true);
 
+            $this->addFlash('success', 'Classe modifie ! Savoir c\'est pouvoir !');
             return $this->redirectToRoute('app_classe_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -92,6 +94,7 @@ class ClasseController extends AbstractController
     public function delete(Request $request, Classe $classe, ClasseRepository $classeRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$classe->getId(), $request->request->get('_token'))) {
+            $this->addFlash('suppr', 'Classe suprimer ! Savoir c\'est pouvoir !');
             $classeRepository->remove($classe, true);
         }
 

@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /**
  * @Route("/eleves")
@@ -52,6 +54,27 @@ class ElevesController extends AbstractController
             $request->query->getInt('page', 1),
             5
         );
+
+        // pdf create
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+
+        $dompdf = new Dompdf($pdfOptions);
+
+        $html = $this->renderView('eleves/mypdf.html.twig', [
+            'title' => "tongasoa",
+        ]);
+
+        $dompdf->loadHtml($html);
+
+        $dompdf->setPaper('A4', 'portrait');
+
+        $dompdf->render();
+
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true,
+        ]);
         return $this->render('eleves/index.html.twig', [
             'eleves' => $eleves,
             'searchForm' => $searchForm->createView(),
@@ -92,45 +115,29 @@ class ElevesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_eleves_show", methods={"GET"})
+     * @Route("/{id}", name="app_eleves_show", methods={"GET", "POST"})
      */
-    public function show(
-        Eleves $elefe,
-        DisplinesRepository $displine,
-        PaginatorInterface $paginator,
-        Request $request
-    ): Response
-    {
+    public function show(Eleves $elefe, Request $request): Response
+    { 
+        $displine = new Displines();
+        $form = $this->createForm(DisplinesType::class, $displine);
+        $form->handleRequest($request);
+        // dd($displine->setEleves($elefe->getId()));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $displine->setDate(new \DateTime('now'));
+            // $displine->setEleves($elefe->getId());
+            $doc = $this->getDoctrine()->getManager();
+            $doc->persist($displine);
+            $doc->flush();
 
-        // $displines = new Displines();
-        // $formDispline = $this->createForm(DisplinesType::class, $displine);
-        // $formDispline->handleRequest($request);
+            return $this->redirectToRoute('app_eleves_index', [], Response::HTTP_SEE_OTHER);
+        }
 
-        // if ($formDispline->isSubmitted() && $formDispline->isValid()) {
-        //         $displines->setDate(New \DateTime('now'));
-        //         // $displine->setEleves($elefe);
 
-        //         $displine->add($displines, true);
-           
-            
-            // $doctrine = $this->getDoctrine()->getManager();
-            // $doctrine->persist($displine);
-            // $doctrine->flush();
-
-            // $this->addFlash('success', 'faute créé ! Savoir c\'est pouvoir !');
-            // return $this->redirectToRoute('app_eleves_new', [], Response::HTTP_SEE_OTHER);
-        // }
-        $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'ASC']);
-
-        // $queryBuilder = $profTitulaireRepository->getWithSerchQueryBuilder($q);
-        $eleves = $paginator->paginate(
-            $donnes,
-            $request->query->getInt('page', 1),
-            5
-        );
+        // dd($form);
         return $this->render('eleves/show.html.twig', [
             'elefe' => $elefe,
-            // 'displineForm' => $formDispline->createView(),
+            'displineForm' => $form->createView(),
         ]);
     }
 
