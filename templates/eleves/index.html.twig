@@ -10,7 +10,11 @@
             </div>
             <div class="container">
                 <div class="row">
-                    {#{ form(searchForm) }#}
+                    {% for message in app.flashes('successPdf') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
                     <table class="table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
@@ -27,7 +31,11 @@
                         <tbody>
                         {% for elefe in eleves %}
                             <tr>
-                                <td>{{ elefe.matricule }}</td>
+                                {% if elefe.matricule|length <= 3 %}
+                                    <td>0{{ elefe.matricule }}</td>
+                                {% else %}
+                                    <td>{{ elefe.matricule }}</td>
+                                {% endif %}
                                 <td>{{ elefe.nom|upper }}</td>
                                 <td>{{ elefe.prenom|title }}</td>
                                 <td><a href="">{{ elefe.classe.nomClasse|capitalize }} {{ elefe.classe.indice|upper }}</a></td>
@@ -38,8 +46,9 @@
                                     {{ include('eleves/_delete_form.html.twig') }}
                                     <a class="btn btn-info" href="{{ path('app_eleves_show', {'id': elefe.id}) }}" title="Informarion"><i class="fa fa-list"></i></a>
                                     <a class="btn btn-warning" href="{{ path('app_eleves_edit', {'id': elefe.id}) }}" title="Modification"><i class="fa fa-edit"></i></a>
-                                    <a href="{#{ path('') }#}" class="btn btn-secondary"><i class="fa fa-minus-circle" title="Displine"></i></a>
-                                    <a href="{#{ path('') }#}" class="btn btn-success"><i class="fa fa-usd" title="Ecolage"></i></a>
+                                    <!-- <a href="{#{ path('') }#}" class="btn btn-secondary"><i class="fa fa-minus-circle" title="Displine"></i></a>
+                                    <a href="{#{ path('') }#}" class="btn btn-success"><i class="fa fa-usd" title="Ecolage"></i></a> -->
+                                    <a class="btn btn-info" href="{{ path('app_eleves_pdf', {'id': elefe.id}) }}" title="PDF"><i class="fa fa-file-text"></i></a>
                                 </td>
                             </tr>
                         {% else %}

@@ -77,8 +77,8 @@ class ElevesType extends AbstractType
             ->add('sexe', ChoiceType::class, [
                 'label' => 'Sexe *',
                 'choices' => [
-                    'Homme' => 'Homme',
-                    'Femme' => 'Femme',
+                    'Masculin' => 'Masculin',
+                    'Féminin' => 'Féminin',
                 ],
                 'expanded' => true,
                 'multiple' => false,

@@ -7,6 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class DisplinesType extends AbstractType
@@ -14,11 +16,10 @@ class DisplinesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('fait')
-            ->add('description')
-            ->add('point')
-            ->add('eleves')
-            ->add('valide', SubmitType::class)
+            ->add('fait', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('point', NumberType::class)
+            // ->add('valide', SubmitType::class)
         ;
     }
 

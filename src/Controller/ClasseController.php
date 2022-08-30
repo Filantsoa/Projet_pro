@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /**
  * @Route("/classe")
@@ -33,6 +35,45 @@ class ClasseController extends AbstractController
         return $this->render('classe/index.html.twig', [
             'classes' => $classe,
         ]);
+    }
+
+    /**
+     * @Route("/{id}/pdf", name="app_classes_pdf")
+     */
+    public function myPdfClasse(Classe $classe)
+    {
+        // pdf create
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // $classe = $classeRepository->findAll();
+
+        $dompdf = new Dompdf($pdfOptions);
+
+        $html = $this->renderView('classe/listePdf.html.twig', [
+            'classe' => $classe,
+        ]);
+
+        $dompdf->loadHtml($html);
+
+        $dompdf->setPaper('A4', 'portrait');
+
+        $dompdf->render();
+
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false,
+        ]);
+
+        // $output = $dompdf->output();
+
+        // $publicDirectory = $this->getParameter('brochures_directory');
+
+        // $pdfFilepath = $publicDirectory . '/'.$classe->getnomClasse().' '.$classe->getIndice() . '.pdf';
+
+        // file_put_contents($pdfFilepath, $output);
+        
+        // $this->addFlash('successPdf', 'Votre PDF bien Enregistre dans votre fichiet Public/pdf !');
+        // return $this->redirectToRoute('app_classe_index', [], Response::HTTP_SEE_OTHER);        
     }
 
     /**
