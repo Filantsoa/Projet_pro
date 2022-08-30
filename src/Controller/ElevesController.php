@@ -160,6 +160,8 @@ class ElevesController extends AbstractController
             $displinesRepository->add($displine, true);
             return $this->redirectToRoute('app_eleves_index', [], Response::HTTP_SEE_OTHER);
         }
+
+       
         return $this->render('eleves/show.html.twig', [
             'elefe' => $elefe,
             'formDispline' => $formDispline->createView(),
