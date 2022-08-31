@@ -99,6 +99,7 @@
     <table id="table">
         <thead>
             <tr>
+                <th>N°</th>
                 <th>Matricule</th>
                 <th>Nom</th>
                 <th>Prenom</th>
@@ -108,6 +109,9 @@
         <tbody>
             {% for eleve in classe.eleves %}
                 <tr>
+                    <th>
+                        {{ numero }}
+                    </th>
                     <td>{{ eleve.matricule }}</td>
                     <td>{{ eleve.nom|upper }}</td>
                     <td>{{ eleve.prenom|title }}</td>

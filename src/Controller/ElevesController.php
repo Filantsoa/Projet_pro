@@ -158,7 +158,8 @@ class ElevesController extends AbstractController
             // $this->entityManager->persist($displine);
             // $this->entityManager->flush();
             $displinesRepository->add($displine, true);
-            return $this->redirectToRoute('app_eleves_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('message', 'Dipline bien enregistre !');
+            return $this->redirectToRoute('app_eleves_show', ['id' => $elefe->getId()], Response::HTTP_SEE_OTHER);
         }
 
        

@@ -92,7 +92,11 @@
                         <!-- <div class="titre">
                             <h3>Information Displine</h3>
                         </div> -->
-
+                        {% for displine in app.flashes('message') %}
+                            <div class="alert alert-success">
+                                {{ displine }}
+                            </div>
+                        {% endfor %}
                         <table class="table table-striped table-hover">
                             <thead>
                                 <th>Fait</th>

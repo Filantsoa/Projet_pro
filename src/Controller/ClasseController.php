@@ -50,8 +50,21 @@ class ClasseController extends AbstractController
 
         $dompdf = new Dompdf($pdfOptions);
 
+        // $numero = 0;
+
+        // while ($numero <= 5) {
+        //     $numero++;
+        // }
+
+        for ($i=0; $i <= 5 ; $i++) { 
+           $i;
+        }
+
+        dd($i);
+
         $html = $this->renderView('classe/listePdf.html.twig', [
             'classe' => $classe,
+            'numero' => $i,
         ]);
 
         $dompdf->loadHtml($html);
