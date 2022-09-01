@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Classe{% endblock %}
+{% block title %}Classe | {{ classe.nomClasse|capitalize }}{% endblock %}
 
 {% block body %}
     <div class="wrapper">
         <div class="section">
             <div class="titre">
-                <h1>Classe</h1>
+                <h1><u>Classe {{ classe.nomClasse|capitalize }}</u></h1>
             </div>
 
             <div class="container">
@@ -24,7 +24,7 @@
                                 </tr>
                                 <tr>
                                     <th>Nombre des eleves</th>
-                                    <td></td>
+                                    <td>{{ classe.eleves|length }}</td>
                                 </tr>
                             </tbody>
                         </table>

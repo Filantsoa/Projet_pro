@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\ProfTitulaireRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ProfTitulaireRepository::class)
+ * @UniqueEntity(fields={"email"}, message="Votre e-mail existe déjà !")
  */
 class ProfTitulaire
 {
@@ -49,12 +52,13 @@ class ProfTitulaire
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $email;
 
     public function __toString()
     {
-        return $this->getNom();
+        return $this->getNom()." ".$this->getPrenom();
     }
     public function getId(): ?int
     {

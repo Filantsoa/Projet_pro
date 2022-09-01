@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @page {
+            margin: 0cm 0cm;
+        }
+
+        body {
+            margin-top: 1cm;
+            margin-left: 0.5cm;
+            margin-right: 0.5cm;
+            margin-bottom: 2cm;
+        }
+        header {
+            position: fixed;
+            top: 0.5cm;
+            left: 0.5cm;
+            right: 0.5cm;
+            bottom: 5cm;
+            text-align: center;
+        }
+        footer {
+            position: fixed; 
+            bottom: 0cm; 
+            left: 0cm; 
+            right: 0cm;
+            text-align: right;
+            line-height: 1.5cm;
+        }
+		h4{
+			padding: 0.7em;
+			border: 1px solid #0003;
+			background-color: #0000000d;
+            margin-top: 5em;
+		}
+		#table{
+			border-collapse: collapse;
+            width: 100%;
+		}
+		#table td, #table th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        #table th:nth-child(1) {
+            width: 7%;
+        }
+        #table th:nth-child(2) {
+            width: 30%;
+        }
+        #table th:nth-child(3) {
+            width: 50%;
+        }
+        #table th, td:nth-child(4) {
+            width: 3%;
+            text-align: center;
+        }
+        th{
+            text-align: left;
+        }
+		p{
+			margin-right: 3em;
+		}
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- <h1>Liste de(s) eleve(s) en classe de {{ classe.nomClasse|capitalize }} {{ classe.indice|upper }}</h1> -->
+        <table>
+            <tr>
+                <th>Etablissement</th>
+                <td>: Ecole Primaire Public</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>: Lot II A Antsiranana </td>
+            </tr>
+            <tr>
+                <th>Classe</th>
+                <td>: {{ classe.nomClasse|capitalize }} {{ classe.indice|upper }}</td>
+            </tr>
+            <tr>
+                <th>Prof Titulaire</th>
+                <td>: {{ classe.profTitulaire|title }}</td>
+            </tr>
+        </table>
+
+        <!-- <img src="public/image/logo.jpg" alt=""> -->
+    </header>
+
+	<h4>Lisets des éleves en classe de {{ classe.nomClasse|capitalize }} {{ classe.indice|upper }}</h4>
+
+    <table id="table">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Matricule</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>sexe</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for eleve in classe.eleves %}
+                <tr>
+                    <th>
+                        {{ numero }}
+                    </th>
+                    <td>{{ eleve.matricule }}</td>
+                    <td>{{ eleve.nom|upper }}</td>
+                    <td>{{ eleve.prenom|title }}</td>
+                    <td>{{ eleve.sexe|title|first }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucun eleve enregitre</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+        
+    </table>
+	<p>
+        Il y a {{ classe.eleves|length }} eleve(s) enregitre dans le classe {{ classe.nomClasse|capitalize }} {{ classe.indice|upper }}
+    </p>
+    <footer>
+        <p>
+			Copyright &copy; {{ "now"|date('d - M - Y') }}
+		</p>
+    </footer>
+</body>
+</html>

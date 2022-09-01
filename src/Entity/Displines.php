@@ -33,7 +33,7 @@ class Displines
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $point;
 
@@ -100,7 +100,7 @@ class Displines
         return $this->eleves;
     }
 
-    public function setEleves(?Eleves $eleves): self
+    public function setEleves($eleves): self
     {
         $this->eleves = $eleves;
 

@@ -35,8 +35,14 @@ class DisplinesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $displinesRepository->add($displine, true);
+            $displine->setDate(new \DateTime('now'));
+            
+            $doc = $this->getDoctrine()->getManager();
+            $doc->persist($displine);
+            $doc->flush();
+            // $displinesRepository->add($displine, true);
 
+            
             return $this->redirectToRoute('app_displines_index', [], Response::HTTP_SEE_OTHER);
         }
 

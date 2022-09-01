@@ -6,7 +6,7 @@
 <div class="wrapper">
     <div class="section">
         <div class="titre">
-            <h1>Prof Titulaire {{ prof_titulaire.nom|upper }}</h1>
+            <h1><u>Prof Titulaire {{ prof_titulaire.nom|upper }}</u></h1>
         </div>
         <div class="container">
             <div class="row">
@@ -39,18 +39,15 @@
                             </tr>
                             <tr>
                                 <th>Classe</th>
-                                <td><a href="">{{ prof_titulaire.classe|capitalize }}</a></td>
+                                <td><a href="">{{ prof_titulaire.classe.nomClasse|capitalize }} {{ prof_titulaire.classe.indice|upper }}</a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                
-
-    <!-- <a href="{{ path('app_prof_titulaire_edit', {'id': prof_titulaire.id}) }}">edit</a> -->
-
-    {#{ include('prof_titulaire/_delete_form.html.twig') }#}
+                {#{ include('prof_titulaire/_delete_form.html.twig') }#}
             </div>
             <a class="btn btn-primary" href="{{ path('app_prof_titulaire_index') }}"> << back to list</a>
+            <a class="btn btn-warning" href="{{ path('app_prof_titulaire_edit', {'id': prof_titulaire.id}) }}"><i class="fa fa-edit"></i></a>
         </div>
     </div>
 </div>

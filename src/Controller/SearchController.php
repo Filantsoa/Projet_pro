@@ -56,12 +56,12 @@ class SearchController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $query = $search->getQuery();
-            if ($query = "") {
+            if ($query) {
                 $eleves = $this->getDoctrine()->getRepository(Eleves::class)->findBy(['matricule' => $query]);
             }
-            else {
-                $eleves = $this->getDoctrine()->getRepository(Eleves::class)->findAll();
-            }
+            // else {
+            //     $eleves = $this->getDoctrine()->getRepository(Eleves::class)->findAll();
+            // }
         }
         return $this->render('search/result.html.twig', [
             'form' => $form->createView(),

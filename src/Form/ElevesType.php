@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
 
 class ElevesType extends AbstractType
 {
@@ -76,8 +77,8 @@ class ElevesType extends AbstractType
             ->add('sexe', ChoiceType::class, [
                 'label' => 'Sexe *',
                 'choices' => [
-                    'Homme' => 'Homme',
-                    'Femme' => 'Femme',
+                    'Masculin' => 'Masculin',
+                    'Féminin' => 'Féminin',
                 ],
                 'expanded' => true,
                 'multiple' => false,
@@ -95,7 +96,7 @@ class ElevesType extends AbstractType
             ->add('classe', EntityType::class, [
                 'label' => 'Classe *',
                 'class' => Classe::class,
-                'choice_label' => 'nomClasse',
+                
             ])
         ;
     }

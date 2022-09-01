@@ -204,7 +204,7 @@ class Eleves
         return $this->tuteur;
     }
 
-    public function setTuteur(string $tuteur): self
+    public function setTuteur($tuteur): self
     {
         $this->tuteur = $tuteur;
 

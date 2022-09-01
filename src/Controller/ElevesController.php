@@ -7,12 +7,15 @@ use App\Form\ElevesType;
 use App\Repository\ElevesRepository;
 use App\Entity\Displines;
 use App\Form\DisplinesType;
+use App\Form\SearchType;
 use App\Repository\DisplinesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /**
  * @Route("/eleves")
@@ -20,7 +23,7 @@ use Knp\Component\Pager\PaginatorInterface;
 class ElevesController extends AbstractController
 {
     /**
-     * @Route("/", name="app_eleves_index", methods={"GET"})
+     * @Route("/", name="app_eleves_index", methods={"GET", "POST"})
      */
     public function index(
         Request $request, 
@@ -28,17 +31,78 @@ class ElevesController extends AbstractController
         PaginatorInterface $paginator
     ): Response
     {
-        $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'ASC']);
 
+        // $searchForm = $this->createForm(SearchType::class);
+        // $searchForm->handleRequest($request);
+
+        // if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+        //     $matricule = $searchForm->getData()->getMatricule();
+        //     $donnes = $repo->search($matricule);
+
+        //     return $this->redirectToRoute('app_eleves_index');
+
+        //     $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'DESC']);
+        // }else{
+        //     $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'ASC']);
+        // }
+
+        $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'ASC']);
         // $queryBuilder = $profTitulaireRepository->getWithSerchQueryBuilder($q);
         $eleves = $paginator->paginate(
             $donnes,
             $request->query->getInt('page', 1),
             5
         );
+
+        
         return $this->render('eleves/index.html.twig', [
             'eleves' => $eleves,
+            // 'searchForm' => $searchForm->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}/pdf", name="app_eleves_pdf")
+     */
+    public function myPdf(Eleves $eleve)
+    {
+        // pdf create
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // $eleve = $elevesRepository->findAll();
+
+        $dompdf = new Dompdf($pdfOptions);
+
+        $html = $this->renderView('eleves/mypdf.html.twig', [
+            'eleve' => $eleve,
+        ]);
+
+        $dompdf->loadHtml($html);
+
+        $dompdf->setPaper('A4', 'portrait');
+
+        $dompdf->render();
+
+        // $dompdf->stream("mypdf.pdf", [
+        //     "Attachment" => false,
+        // ]);
+
+        $output = $dompdf->output();
+
+        $publicDirectory = $this->getParameter('brochures_directory');
+
+        $pdfFilepath = $publicDirectory . '/'.$eleve->getNom().' '.$eleve->getPrenom() .'.pdf';
+
+        file_put_contents($pdfFilepath, $output);
+        
+        $this->addFlash('successPdf', 'Votre PDF bien Enregistre dans votre fichiet Public/pdf !');
+        return $this->redirectToRoute('app_eleves_index', [], Response::HTTP_SEE_OTHER);
+        // return new Response("The pdf file ");
+        // return $this->renderForm('eleves/mypdf.html.twig', [
+        //     'eleves' => $eleve,
+        // ]);
+        
     }
 
     /**
@@ -75,25 +139,33 @@ class ElevesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_eleves_show", methods={"GET"})
+     * @Route("/{id}", name="app_eleves_show", methods={"GET", "POST"})
      */
-    public function show(
-        Eleves $elefe,
-        DisplinesRepository $displine,
-        PaginatorInterface $paginator,
-        Request $request
-    ): Response
-    {
-        $donnes = $this->getDoctrine()->getRepository(Eleves::class)->findBy([],['matricule' => 'ASC']);
+    public function show(Eleves $elefe, Request $request, DisplinesRepository $displinesRepository, ElevesRepository $elevesRepository, PaginatorInterface $paginator): Response
+    { 
+        // dd($form);
 
-        // $queryBuilder = $profTitulaireRepository->getWithSerchQueryBuilder($q);
-        $eleves = $paginator->paginate(
-            $donnes,
-            $request->query->getInt('page', 1),
-            5
-        );
+        $displine = new Displines();
+        $formDispline = $this->createForm(DisplinesType::class, $displine);
+        $formDispline->handleRequest($request);
+
+        // $this->entityManager = $entityManage;
+
+        if ($formDispline->isSubmitted() && $formDispline->isValid()) {
+            $displine->setEleves($elefe);
+            $displine->setDate(new \DateTime('now'));
+
+            // $this->entityManager->persist($displine);
+            // $this->entityManager->flush();
+            $displinesRepository->add($displine, true);
+            $this->addFlash('message', 'Dipline bien enregistre !');
+            return $this->redirectToRoute('app_eleves_show', ['id' => $elefe->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+       
         return $this->render('eleves/show.html.twig', [
             'elefe' => $elefe,
+            'formDispline' => $formDispline->createView(),
         ]);
     }
 

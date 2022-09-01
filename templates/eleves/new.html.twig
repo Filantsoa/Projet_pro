@@ -8,7 +8,7 @@
     <div class="wrapper">
         <div class="section">
             <div class="titre">
-                <h1>Nouvelle Eleve</h1>
+                <h1><u>Nouvelle Eleve</u></h1>
             </div>
 
             {% for message in app.flashes('success') %}
@@ -27,7 +27,7 @@
             <div class="container">
                 <div class="row">
                     <div class="titre">
-                        <h2>Liste des eleves</h2>
+                        <h2><u>Liste de(s) eleve(s)</u></h2>
                     </div>
                     <table class="table table-striped table-hover table-bordered">
                         <thead>
@@ -38,7 +38,7 @@
                             <th>Adresse</th>
                             <th>Telephone</th>
                             <th>Sexe</th>
-                            <th>Actions</th>
+                            <th id="actionEleve">Actions</th>
                         </thead>
                         <tbody>
                             {% for elefe in eleves %}
@@ -46,7 +46,7 @@
                                     <td>{{ elefe.matricule }}</td>
                                     <td>{{ elefe.nom|upper }}</td>
                                     <td>{{ elefe.prenom|title }}</td>
-                                    <td><a href="">{{ elefe.classe|capitalize }}</a></td>
+                                    <td><a href="">{{ elefe.classe|capitalize }} {{ elefe.classe.indice }}</a></td>
                                     <td>{{ elefe.adresse|title }}</td>
                                     <td>+261{{ elefe.telephone }}</td>
                                     <td>{{ elefe.sexe|capitalize }}</td>
@@ -54,6 +54,8 @@
                                         {{ include('eleves/_delete_form.html.twig') }}
                                         <a class="btn btn-info" href="{{ path('app_eleves_show', {'id': elefe.id}) }}"><i class="fa fa-list"></i></a>
                                         <a class="btn btn-warning" href="{{ path('app_eleves_edit', {'id': elefe.id}) }}"><i class="fa fa-edit"></i></a>
+                                        <a href="{#{ path('') }#}" class="btn btn-secondary"><i class="fa fa-minus-circle" title="Displine"></i></a>
+                                        <a href="{#{ path('') }#}" class="btn btn-success"><i class="fa fa-usd" title="Ecolage"></i></a>
                                     </td>
                                 </tr>
                             {% else %}

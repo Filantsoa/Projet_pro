@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+// use Symfony\Flex\Options;
 
 /**
  * @Route("/classe")
@@ -36,6 +39,58 @@ class ClasseController extends AbstractController
     }
 
     /**
+     * @Route("/{id}/pdf", name="app_classes_pdf")
+     */
+    public function myPdfClasse(Classe $classe)
+    {
+        // pdf create
+        $pdfOptions = new Options();
+        $pdfOptions->get('defaultFont', 'Arial');
+
+        // $classe = $classeRepository->findAll();
+
+        $dompdf = new Dompdf($pdfOptions);
+
+        // $numero = 0;
+
+        // while ($numero <= 5) {
+        //     $numero++;
+        // }
+
+        for ($i=0; $i <= 5 ; $i++) { 
+           $i;
+        }
+
+        // dd($i);
+
+        $html = $this->renderView('classe/listePdf.html.twig', [
+            'classe' => $classe,
+            'numero' => $i,
+        ]);
+
+        $dompdf->loadHtml($html);
+
+        $dompdf->setPaper('A4', 'portrait');
+
+        $dompdf->render();
+
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false,
+        ]);
+
+        // $output = $dompdf->output();
+
+        // $publicDirectory = $this->getParameter('brochures_directory');
+
+        // $pdfFilepath = $publicDirectory . '/'.$classe->getnomClasse().' '.$classe->getIndice() . '.pdf';
+
+        // file_put_contents($pdfFilepath, $output);
+        
+        // $this->addFlash('successPdf', 'Votre PDF bien Enregistre dans votre fichiet Public/pdf !');
+        // return $this->redirectToRoute('app_classe_index', [], Response::HTTP_SEE_OTHER);        
+    }
+
+    /**
      * @Route("/new", name="app_classe_new", methods={"GET", "POST"})
      */
     public function new(Request $request, ClasseRepository $classeRepository): Response
@@ -47,6 +102,7 @@ class ClasseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $classeRepository->add($classe, true);
 
+            $this->addFlash('success', 'Classe créé ! Savoir c\'est pouvoir !');
             return $this->redirectToRoute('app_classe_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -77,6 +133,7 @@ class ClasseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $classeRepository->add($classe, true);
 
+            $this->addFlash('success', 'Classe modifie ! Savoir c\'est pouvoir !');
             return $this->redirectToRoute('app_classe_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -92,6 +149,7 @@ class ClasseController extends AbstractController
     public function delete(Request $request, Classe $classe, ClasseRepository $classeRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$classe->getId(), $request->request->get('_token'))) {
+            $this->addFlash('suppr', 'Classe suprimer ! Savoir c\'est pouvoir !');
             $classeRepository->remove($classe, true);
         }
 

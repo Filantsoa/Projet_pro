@@ -1,12 +1,16 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "montserrat";
+  font-family: "cursive" !important;
   background: #e3e9f7;
 }
 
-.btn-primary, .btn-warning {
+.btn {
   width: auto !important;
+  font-size: 10px !important;
+}
+
+.btn-primary {
   font-size: 13px !important;
 }
 
@@ -15,8 +19,13 @@ body {
   font-size: 13px !important;
 }
 
-.form-control, .form-select {
+.form-control {
   font-size: 13px !important;
+}
+
+.form-select {
+  font-size: 13px !important;
+  text-transform: capitalize;
 }
 
 .form-check {
@@ -39,7 +48,7 @@ nav ul {
   margin: 0;
   padding: 0;
   height: 100%;
-  width: 260px;
+  width: 200px;
   position: fixed;
   top: 0;
   left: 0;
@@ -53,7 +62,7 @@ nav ul li a {
   font-family: "montserrat";
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 17px;
+  font-size: 13px;
   color: #fff;
   position: relative;
   padding: 15px 0px 15px 25px;
@@ -104,7 +113,7 @@ nav .navbar-nav li .dropdown-menu .dropdown-item:hover {
 }
 
 .wrapper {
-  margin-left: 260px;
+  margin-left: 200px;
 }
 .wrapper .section {
   display: grid;
@@ -269,8 +278,14 @@ header {
 table {
   font-size: 13px;
 }
-table .btn {
-  font-size: 10px;
+table thead #actionEleve {
+  width: 15%;
+}
+table thead #actionClasse {
+  width: 15%;
+}
+table thead #actionProf {
+  width: 12%;
 }
 table tbody td a {
   text-decoration: none;

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @page {
+            margin: 0cm 0cm;
+        }
+
+        body {
+            margin-top: 2cm;
+            margin-left: 2cm;
+            margin-right: 2cm;
+            margin-bottom: 2cm;
+        }
+        header {
+            position: fixed;
+            top: 0cm;
+            left: 0cm;
+            right: 0cm;
+            text-align: center;
+        }
+        footer {
+            position: fixed; 
+            bottom: 0cm; 
+            left: 0cm; 
+            right: 0cm;
+            text-align: right;
+            line-height: 1.5cm;
+        }
+		h4{
+			padding: 0.7em;
+			border: 1px solid #0003;
+			background-color: #0000000d;
+            margin-top: 2em;
+		}
+		table{
+			width: 100%;
+			font-size: 18px;
+		}
+		tr{
+			padding: 5em;
+		}
+		th{
+			width: 30%;
+            text-align: left !important;
+		}
+		td{
+			border-bottom: 1px dashed;
+		}
+		p{
+			margin-right: 3em;
+		}
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Fiche Personnelle</h1>
+    </header>
+
+	<h4>L'éleve</h4>
+
+	<table>
+		<thead>
+            <tr>
+				<th>Matricule</th>
+				{% if eleve.matricule|length <= 3 %}
+					<td>: 0{{ eleve.matricule }}</td>
+				{% else %}
+					<td>: {{ eleve.matricule }}</td>
+				{% endif %}
+			</tr>
+            <br>
+			<tr>
+				<th>Nom</th>
+				<td>: {{ eleve.nom|upper }}</td>
+			</tr>
+            <br>
+			<tr>
+				<th>Prenom</th>
+				<td>: {{ eleve.prenom|title }}</td>
+			</tr>
+            <br>
+			<tr>
+				<th>Classe</th>
+				<td>: {{ eleve.classe|title }}</td>
+			</tr>
+            <br>
+			<tr>
+				<th>Date de naissance</th>
+				<td>: {{ eleve.dateNaissance|date('d M Y') }}</td>
+			</tr>
+            <br>
+			<tr>
+				<th>Adresse exacte</th>
+				<td>: {{ eleve.adresse|title }}</td>
+			</tr>
+            <br>
+			<tr>
+				<th>Numéro de téléphone</th>
+				<td>: +261{{ eleve.telephone }}</td>
+			</tr>
+            <br>
+			<tr>
+				<th>Pere et Mere</th>
+				<td>: {{ eleve.pere|title }} et {{ eleve.mere|title }}</td>
+			</tr>
+            <br>
+			<tr>
+				<th>Tuteur</th>
+                {% if eleve.tuteur == 0 %}
+                    <td><i>Aucun Tuteur</i></td>
+                {% else %}
+				    <td>: {{ eleve.tuteur|title }}</td>
+                {% endif %}
+			</tr>
+
+            <br>
+			<tr>
+				<th>Sexe</th>
+				<td>: {{ eleve.sexe|title }}</td>
+			</tr>
+            <br>
+			<tr>
+				<th>Religion</th>
+				<td>: {{ eleve.religion|upper }}</td>
+			</tr>
+		</thead>
+	</table>
+
+    <footer>
+        <p>
+			Copyright &copy; {{ "now"|date('d - M - Y') }}
+		</p>
+    </footer>
+</body>
+</html>
