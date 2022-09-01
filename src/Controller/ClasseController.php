@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+// use Symfony\Flex\Options;
 
 /**
  * @Route("/classe")
@@ -44,7 +45,7 @@ class ClasseController extends AbstractController
     {
         // pdf create
         $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->get('defaultFont', 'Arial');
 
         // $classe = $classeRepository->findAll();
 
@@ -60,7 +61,7 @@ class ClasseController extends AbstractController
            $i;
         }
 
-        dd($i);
+        // dd($i);
 
         $html = $this->renderView('classe/listePdf.html.twig', [
             'classe' => $classe,
